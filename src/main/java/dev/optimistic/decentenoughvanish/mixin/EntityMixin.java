@@ -11,7 +11,9 @@ import org.spongepowered.asm.mixin.Mixin;
 public abstract class EntityMixin {
   @WrapMethod(method = "canBeSeenByAnyone")
   private boolean canBeSeenByAnyone(Operation<Boolean> original) {
-    return !((Object) this instanceof final ServerPlayer player
-      && ((PlayerState) player).decentenoughvanish$isVanished()) && !original.call();
+    if (((Object) this instanceof final ServerPlayer player) && ((PlayerState) player).decentenoughvanish$isVanished())
+      return false;
+
+    return original.call();
   }
 }
