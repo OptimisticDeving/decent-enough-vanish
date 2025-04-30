@@ -16,5 +16,3 @@ little leakage & complexity as possible.
 3. Fake join and leave messages may not be bridged where the bridge relies on
    mixins to PlayerList & ServerGamePacketListenerImplMixin bridge join/leave
    messages. [vanilla-discord-bridge] will work correctly, though.
-4. You have to enter spectator mode in order to open chests silently. This
-   should be addressed soon.

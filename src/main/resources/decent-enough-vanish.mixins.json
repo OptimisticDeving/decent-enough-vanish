@@ -4,16 +4,19 @@
   "compatibilityLevel": "JAVA_${java_version}",
   "mixins": [
     "CommandSourceStackMixin",
+    "ContainerOpenersCounterMixin",
     "EntityMixin",
     "EntitySelectorMixin",
     "ListPlayersCommandMixin",
     "MessageArgumentMixin",
+    "MinecartChestMixin",
     "MsgCommandMixin",
     "OpCommandMixin",
     "PlayerListMixin",
     "ServerCommonPacketListenerImplMixin",
     "ServerGamePacketListenerImplMixin",
     "ServerPlayerMixin",
+    "ShulkerBoxBlockEntityMixin",
     "accessor.CommandSourceStackAccessor"
   ],
   "injectors": {
