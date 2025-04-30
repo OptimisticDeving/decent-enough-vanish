@@ -1,9 +1,9 @@
-package dev.optimistic.decentenoughvanish.mixin;
+package dev.optimistic.decentenoughvanish.mixin.entity;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import dev.optimistic.decentenoughvanish.PlayerState;
+import dev.optimistic.decentenoughvanish.state.PlayerState;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.Commands;
 import net.minecraft.nbt.CompoundTag;

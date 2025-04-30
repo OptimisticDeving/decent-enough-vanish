@@ -1,4 +1,4 @@
-package dev.optimistic.decentenoughvanish;
+package dev.optimistic.decentenoughvanish.state;
 
 import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;

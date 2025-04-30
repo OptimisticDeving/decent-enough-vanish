@@ -4,6 +4,8 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.builder.ArgumentBuilder;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import dev.optimistic.decentenoughvanish.state.CommandSourceStackState;
+import dev.optimistic.decentenoughvanish.state.PlayerState;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.fabricmc.api.DedicatedServerModInitializer;
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback;

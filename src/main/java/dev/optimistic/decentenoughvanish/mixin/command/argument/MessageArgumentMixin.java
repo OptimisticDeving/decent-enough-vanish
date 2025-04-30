@@ -1,4 +1,4 @@
-package dev.optimistic.decentenoughvanish.mixin;
+package dev.optimistic.decentenoughvanish.mixin.command.argument;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
@@ -7,8 +7,8 @@ import com.llamalad7.mixinextras.sugar.Local;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.exceptions.SimpleCommandExceptionType;
-import dev.optimistic.decentenoughvanish.CommandSourceStackState;
-import dev.optimistic.decentenoughvanish.PlayerState;
+import dev.optimistic.decentenoughvanish.state.CommandSourceStackState;
+import dev.optimistic.decentenoughvanish.state.PlayerState;
 import net.minecraft.commands.CommandSigningContext;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.arguments.MessageArgument;

@@ -1,9 +1,9 @@
-package dev.optimistic.decentenoughvanish.mixin;
+package dev.optimistic.decentenoughvanish.mixin.playerconn;
 
 import com.llamalad7.mixinextras.injector.wrapmethod.WrapMethod;
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
-import dev.optimistic.decentenoughvanish.PlayerState;
-import dev.optimistic.decentenoughvanish.StreamUtil;
+import dev.optimistic.decentenoughvanish.state.PlayerState;
+import dev.optimistic.decentenoughvanish.util.StreamUtil;
 import net.minecraft.network.PacketSendListener;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;

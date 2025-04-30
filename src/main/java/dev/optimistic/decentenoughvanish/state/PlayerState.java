@@ -1,4 +1,4 @@
-package dev.optimistic.decentenoughvanish;
+package dev.optimistic.decentenoughvanish.state;
 
 import dev.optimistic.decentenoughvanish.mixin.accessor.CommandSourceStackAccessor;
 import net.minecraft.commands.CommandSourceStack;

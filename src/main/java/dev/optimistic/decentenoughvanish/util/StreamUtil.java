@@ -1,4 +1,4 @@
-package dev.optimistic.decentenoughvanish;
+package dev.optimistic.decentenoughvanish.util;
 
 import org.jetbrains.annotations.Nullable;
 
