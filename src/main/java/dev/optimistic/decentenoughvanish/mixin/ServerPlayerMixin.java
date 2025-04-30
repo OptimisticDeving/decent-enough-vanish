@@ -5,6 +5,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dev.optimistic.decentenoughvanish.PlayerState;
 import net.minecraft.ChatFormatting;
+import net.minecraft.commands.Commands;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
@@ -31,7 +32,6 @@ public abstract class ServerPlayerMixin implements PlayerState {
   private static final Component CURRENTLY_VANISHED =
     Component.literal("You are currently in vanish.")
       .withStyle(ChatFormatting.GREEN);
-
   @Unique
   private static final String KEY = "decent-enough-vanish$vanished";
   @Shadow
@@ -50,6 +50,9 @@ public abstract class ServerPlayerMixin implements PlayerState {
 
   @Shadow
   public abstract void sendSystemMessage(Component mesage);
+
+  @Shadow
+  public abstract int getPermissionLevel();
 
   @Override
   public boolean decentenoughvanish$isVanished() {
@@ -140,6 +143,7 @@ public abstract class ServerPlayerMixin implements PlayerState {
     CompoundTag compound,
     CallbackInfo ci
   ) {
+    if (this.getPermissionLevel() < Commands.LEVEL_GAMEMASTERS) return;
     this.vanished = compound.getBoolean(KEY);
   }
 
