@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "package": "dev.optimistic.decentenoughvanish.mixin",
+  "compatibilityLevel": "JAVA_${java_version}",
+  "mixins": [
+    "CommandSourceStackMixin",
+    "EntityMixin",
+    "EntitySelectorMixin",
+    "MessageArgumentMixin",
+    "MsgCommandMixin",
+    "PlayerListMixin",
+    "ServerCommonPacketListenerImplMixin",
+    "ServerGamePacketListenerImplMixin",
+    "ServerPlayerMixin",
+    "accessor.CommandSourceStackAccessor"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
