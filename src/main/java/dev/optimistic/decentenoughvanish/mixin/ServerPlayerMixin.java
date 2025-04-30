@@ -6,6 +6,7 @@ import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
 import dev.optimistic.decentenoughvanish.PlayerState;
 import net.minecraft.ChatFormatting;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
@@ -27,6 +28,11 @@ import java.util.Collections;
 @Mixin(ServerPlayer.class)
 public abstract class ServerPlayerMixin implements PlayerState {
   @Unique
+  private static final Component CURRENTLY_VANISHED =
+    Component.literal("You are currently in vanish.")
+      .withStyle(ChatFormatting.GREEN);
+
+  @Unique
   private static final String KEY = "decent-enough-vanish$vanished";
   @Shadow
   @Final
@@ -36,6 +42,14 @@ public abstract class ServerPlayerMixin implements PlayerState {
   private TextFilter textFilter;
   @Unique
   private boolean vanished;
+  @Unique
+  private boolean vanishedLastTick;
+
+  @Shadow
+  public abstract void sendSystemMessage(Component message, boolean overlay);
+
+  @Shadow
+  public abstract void sendSystemMessage(Component mesage);
 
   @Override
   public boolean decentenoughvanish$isVanished() {
@@ -155,5 +169,16 @@ public abstract class ServerPlayerMixin implements PlayerState {
     if (key != GameRules.RULE_SHOWDEATHMESSAGES)
       return original.call(instance, key);
     return !this.vanished && original.call(instance, key);
+  }
+
+  @Inject(method = "tick", at = @At("HEAD"))
+  private void afterTick(CallbackInfo ci) {
+    if (this.vanished) {
+      this.vanishedLastTick = true;
+      this.sendSystemMessage(CURRENTLY_VANISHED, true);
+    } else if (this.vanishedLastTick) {
+      this.vanishedLastTick = false;
+      this.sendSystemMessage(CommonComponents.EMPTY, true);
+    }
   }
 }

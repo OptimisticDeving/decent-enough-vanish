@@ -42,12 +42,12 @@ public final class Entrypoint implements DedicatedServerModInitializer {
         source.getPlayer() == targets.stream().findFirst().orElse(null)
     ) {
       source.sendSystemMessage(
-        Component.literal(enabledOrDisabled + " your vanish")
+        Component.literal(enabledOrDisabled + " your vanish.")
       );
     } else {
       source.sendSystemMessage(
         Component.literal(
-          enabledOrDisabled + " vanish for " + targets.size() + " player(s)"
+          enabledOrDisabled + " vanish for " + targets.size() + " player(s)."
         )
       );
     }

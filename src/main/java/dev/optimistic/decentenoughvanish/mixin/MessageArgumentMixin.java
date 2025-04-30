@@ -25,7 +25,7 @@ public abstract class MessageArgumentMixin {
   @Unique
   private static final CommandSyntaxException EXIT_VANISH =
     new SimpleCommandExceptionType(
-      Component.literal("Please exit vanish before broadcasting messages")
+      Component.literal("Please exit vanish before broadcasting messages!")
     ).create();
 
   @WrapMethod(method = "resolveChatMessage")
