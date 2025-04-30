@@ -30,7 +30,7 @@ public abstract class MsgCommandMixin {
     Operation<Void> original
   ) {
     original.call(
-      CommandSourceStackState.withBypass(context, true),
+      CommandSourceStackState.withBypassMessages(context),
       key,
       callback
     );

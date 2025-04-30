@@ -22,7 +22,10 @@ import java.util.Collection;
 @Mixin(CommandSourceStack.class)
 public abstract class CommandSourceStackMixin implements CommandSourceStackState {
   @Unique
-  private boolean bypassVanish;
+  private boolean bypassVanishCompletions;
+
+  @Unique
+  private boolean bypassVanishMessages;
 
   @Shadow
   @Final
@@ -42,7 +45,7 @@ public abstract class CommandSourceStackMixin implements CommandSourceStackState
     Operation<Collection<String>> original
   ) {
     final var originalList = original.call();
-    if (this.decentenoughvanish$bypassVanish()) return originalList;
+    if (this.decentenoughvanish$bypassVanishCompletions()) return originalList;
     final var playerList = this.server.getPlayerList();
     return originalList
       .stream()
@@ -56,13 +59,23 @@ public abstract class CommandSourceStackMixin implements CommandSourceStackState
   }
 
   @Override
-  public boolean decentenoughvanish$bypassVanish() {
-    return this.hasPermission(Commands.LEVEL_ADMINS) || this.bypassVanish;
+  public boolean decentenoughvanish$bypassVanishCompletions() {
+    return this.hasPermission(Commands.LEVEL_ADMINS) || this.bypassVanishCompletions;
   }
 
   @Override
-  public void decentenoughvanish$setBypassVanish(boolean newValue) {
-    this.bypassVanish = newValue;
+  public void decentenoughvanish$setBypassVanishCompletions(boolean newValue) {
+    this.bypassVanishCompletions = newValue;
+  }
+
+  @Override
+  public boolean decentenoughvanish$bypassVanishMessages() {
+    return this.bypassVanishMessages;
+  }
+
+  @Override
+  public void decentenoughvanish$setBypassVanishMessages(boolean newValue) {
+    this.bypassVanishMessages = newValue;
   }
 
   @Inject(method = "broadcastToAdmins", at = @At("HEAD"), cancellable = true)

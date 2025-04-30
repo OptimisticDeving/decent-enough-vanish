@@ -149,7 +149,7 @@ public final class Entrypoint implements DedicatedServerModInitializer {
           ),
           ctx ->
             EntityArgument.getPlayers(
-              CommandSourceStackState.withBypass(ctx, true),
+              CommandSourceStackState.withBypassCompletions(ctx),
               "targets"
             )
         )

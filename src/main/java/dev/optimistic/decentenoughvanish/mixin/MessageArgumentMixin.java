@@ -44,7 +44,7 @@ public abstract class MessageArgumentMixin {
     }
 
     if (((PlayerState) entity).decentenoughvanish$isVanished() &&
-      !((CommandSourceStackState) source).decentenoughvanish$bypassVanish())
+      !((CommandSourceStackState) source).decentenoughvanish$bypassVanishMessages())
       throw EXIT_VANISH;
 
     original.call(context, key, callback);

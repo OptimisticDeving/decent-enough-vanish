@@ -4,16 +4,27 @@ import com.mojang.brigadier.context.CommandContext;
 import net.minecraft.commands.CommandSourceStack;
 
 public interface CommandSourceStackState {
-  static CommandContext<CommandSourceStack> withBypass(
-    CommandContext<CommandSourceStack> ctx,
-    boolean bypass
+  static CommandContext<CommandSourceStack> withBypassCompletions(
+    CommandContext<CommandSourceStack> ctx
   ) {
     ((CommandSourceStackState) ctx.getSource())
-      .decentenoughvanish$setBypassVanish(bypass);
+      .decentenoughvanish$setBypassVanishCompletions(true);
     return ctx;
   }
 
-  boolean decentenoughvanish$bypassVanish();
+  static CommandContext<CommandSourceStack> withBypassMessages(
+    CommandContext<CommandSourceStack> ctx
+  ) {
+    ((CommandSourceStackState) ctx.getSource())
+      .decentenoughvanish$setBypassVanishMessages(true);
+    return ctx;
+  }
 
-  void decentenoughvanish$setBypassVanish(boolean newValue);
+  boolean decentenoughvanish$bypassVanishCompletions();
+
+  void decentenoughvanish$setBypassVanishCompletions(boolean newValue);
+
+  boolean decentenoughvanish$bypassVanishMessages();
+
+  void decentenoughvanish$setBypassVanishMessages(boolean newValue);
 }

@@ -20,7 +20,7 @@ public abstract class EntitySelectorMixin {
     Operation<List<ServerPlayer>> original
   ) {
     final var originalList = original.call(source);
-    if (((CommandSourceStackState) source).decentenoughvanish$bypassVanish())
+    if (((CommandSourceStackState) source).decentenoughvanish$bypassVanishCompletions())
       return originalList;
     return originalList
       .stream()
@@ -34,7 +34,7 @@ public abstract class EntitySelectorMixin {
     Operation<List<? extends Entity>> original
   ) {
     final var originalList = original.call(source);
-    if (((CommandSourceStackState) source).decentenoughvanish$bypassVanish())
+    if (((CommandSourceStackState) source).decentenoughvanish$bypassVanishCompletions())
       return originalList;
     return originalList
       .stream()
