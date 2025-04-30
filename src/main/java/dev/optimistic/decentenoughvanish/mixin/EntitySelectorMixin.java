@@ -24,7 +24,7 @@ public abstract class EntitySelectorMixin {
       return originalList;
     return originalList
       .stream()
-      .filter(player -> PlayerState.shouldSee(player, source))
+      .filter(player -> PlayerState.shouldSee(source, player))
       .toList();
   }
 
@@ -41,7 +41,7 @@ public abstract class EntitySelectorMixin {
       .filter(
         entity ->
           !(entity instanceof final ServerPlayer player)
-            || PlayerState.shouldSee(player, source)
+            || PlayerState.shouldSee(source, player)
       )
       .toList();
   }

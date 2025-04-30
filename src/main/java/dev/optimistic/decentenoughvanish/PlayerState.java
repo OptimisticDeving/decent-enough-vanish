@@ -9,14 +9,14 @@ import org.jetbrains.annotations.Nullable;
 
 public interface PlayerState {
   static boolean shouldSee(
-    @Nullable ServerPlayer player,
-    CommandSourceStack stack
+    CommandSourceStack seer,
+    @Nullable ServerPlayer other
   ) {
-    if (((CommandSourceStackAccessor) stack).getSource() instanceof MinecraftServer)
+    if (((CommandSourceStackAccessor) seer).getSource() instanceof MinecraftServer)
       return true;
-    if (player == null) return false;
-    return stack.getEntity() == player
-      || !((PlayerState) player).decentenoughvanish$isVanished();
+    if (other == null) return false;
+    return seer.getEntity() == other
+      || !((PlayerState) other).decentenoughvanish$isVanished();
   }
 
   static boolean shouldSee(Entity seer, ServerPlayer other) {

@@ -51,8 +51,8 @@ public abstract class CommandSourceStackMixin implements CommandSourceStackState
       .stream()
       .filter(
         name -> PlayerState.shouldSee(
-          playerList.getPlayerByName(name),
-          (CommandSourceStack) (Object) this
+          (CommandSourceStack) (Object) this,
+          playerList.getPlayerByName(name)
         )
       )
       .toList();

@@ -6,6 +6,7 @@
     "CommandSourceStackMixin",
     "EntityMixin",
     "EntitySelectorMixin",
+    "ListPlayersCommandMixin",
     "MessageArgumentMixin",
     "MsgCommandMixin",
     "PlayerListMixin",
