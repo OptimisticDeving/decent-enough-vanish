@@ -6,7 +6,12 @@ version = project.mod_version
 group = project.maven_group
 base.archivesName = project.archives_base_name
 
-loom.serverOnlyMinecraftJar()
+loom {
+  serverOnlyMinecraftJar()
+
+  accessWidenerPath =
+    file('src/main/resources/decent-enough-vanish.accessWidener')
+}
 
 repositories {
   maven { url = uri('https://maven.parchmentmc.org/') }

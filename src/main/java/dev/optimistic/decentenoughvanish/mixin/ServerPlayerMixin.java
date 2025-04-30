@@ -10,6 +10,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoRemovePacket;
 import net.minecraft.network.protocol.game.ClientboundPlayerInfoUpdatePacket;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.network.TextFilter;
 import net.minecraft.world.level.GameRules;
@@ -29,8 +30,10 @@ public abstract class ServerPlayerMixin implements PlayerState {
   private static final String KEY = "decent-enough-vanish$vanished";
   @Shadow
   @Final
+  public MinecraftServer server;
+  @Shadow
+  @Final
   private TextFilter textFilter;
-
   @Unique
   private boolean vanished;
 
@@ -51,6 +54,14 @@ public abstract class ServerPlayerMixin implements PlayerState {
       assert server != null;
       final var playerList = server.getPlayerList();
       final String translationKey;
+
+      final var trackedEntity =
+        serverPlayer.serverLevel()
+          .getChunkSource()
+          .chunkMap
+          .entityMap
+          .get(serverPlayer.getId());
+
       if (this.vanished) {
         packet = new ClientboundPlayerInfoRemovePacket(
           Collections.singletonList(serverPlayer.getUUID())
@@ -60,6 +71,7 @@ public abstract class ServerPlayerMixin implements PlayerState {
         translationKey = "multiplayer.player.left";
 
         serverPlayer.unRide();
+        trackedEntity.seenBy.forEach(seenBy -> trackedEntity.removePlayer(seenBy.getPlayer()));
       } else {
         packet = ClientboundPlayerInfoUpdatePacket.createPlayerInitializing(
           Collections.singleton(serverPlayer)
@@ -83,6 +95,13 @@ public abstract class ServerPlayerMixin implements PlayerState {
         if (listedPlayer == serverPlayer) continue;
         listedPlayer.connection.send(packet);
       }
+
+      if (this.vanished) return;
+      trackedEntity.updatePlayers(
+        serverPlayer
+          .serverLevel()
+          .getPlayers(player -> player != serverPlayer)
+      );
     }
   }
 

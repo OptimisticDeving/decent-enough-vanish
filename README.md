@@ -18,5 +18,3 @@ little leakage & complexity as possible.
    messages. [vanilla-discord-bridge] will work correctly, though.
 4. You have to enter spectator mode in order to open chests silently. This
    should be addressed soon.
-5. You won't instantly be removed on other people's clients. I'm working on this
-   too.
